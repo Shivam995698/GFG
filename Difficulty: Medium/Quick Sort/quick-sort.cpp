@@ -1,7 +1,6 @@
 class Solution {
   public:
     void quickSort(vector<int>& arr, int low, int high) {
-        // code here
         if(low<high)
         {
             int pi = partition(arr,low,high);
@@ -13,11 +12,10 @@ class Solution {
   public:
     int partition(vector<int>& arr, int low, int high) {
         
-        // code here
-        int i = low-1;
-        int pivot =high;
         int n = arr.size();
-        for(int j = low;j<high;j++)
+        int i = low-1;
+        int pivot = high;
+        for(int j = low;j<=high-1;j++)
         {
             if(arr[j]<arr[pivot])
             {
@@ -25,7 +23,8 @@ class Solution {
                 swap(arr[i],arr[j]);
             }
         }
-        swap(arr[i+1],arr[pivot]);
-        return i+1;
+        i++;
+        swap(arr[i],arr[pivot]);
+        return i;
     }
 };
