@@ -1,16 +1,37 @@
 class Solution {
   public:
-    bool areKAnagrams(string &s1, string &s2, int k){
-        if(s1.size() != s2.size()) return false;
-        vector<int> freq(26, 0);
-        char a = 'a';
-        for(char c: s1) freq[c-a]++;
-        for(char c: s2){
-            if(freq[c-a] > 0) freq[c-a]--;
-            else k--;
+    bool areKAnagrams(string &s1, string &s2, int k) {
+        int n1 = s1.length();
+        int n2 = s2.length();
+        if(n1!=n2)
+        {
+            return false;
         }
-        if(k < 0) return false;
-        return true;
+        unordered_map<char,int>mp1;
+        unordered_map<char,int>mp2;
+        unordered_set<char>st1;
+        for(int i =0;i<n1;i++)
+        {
+            mp1[s1[i]]++;
+            st1.insert(s1[i]);
+        }
+        for(int i = 0;i<n2;i++)
+        {
+            mp2[s2[i]]++;
+            st1.insert(s2[i]);
+        }
+        int diff = 0;
+        for(char ch: st1)
+        {
+            diff = diff + abs(mp1[ch]-mp2[ch]);
+        }
+ 
+        if(diff/2<=k)
+        {
+            return true;
+  
+        }
+        return false;
+        
     }
 };
-
